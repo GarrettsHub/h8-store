@@ -1,9 +1,9 @@
 const con = require('../../config/dbconfig')
 const { findAll } = require('../common/daoCommon')
 
-const userDao = {
+const categoryDao = {
 
-    table: 'user',
+    table: 'category',
 
     findAll: (res, table) => {
         con.execute(
@@ -59,7 +59,7 @@ const userDao = {
 
     sort: (res, table) => {
         con.execute(
-            `SELECT * FROM ${table} ORDER BY lName, fName;`,
+            `SELECT * FROM ${table} ORDER BY name;`,
             (error, rows)=> {
                 if(!error) {
                     if (rows.length === 1) {
@@ -131,4 +131,4 @@ const userDao = {
     }
 }
 
-module.exports = userDao
+module.exports = categoryDao

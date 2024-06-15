@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const {userDao: dao} = require('../../daos/dao')
+const {categoryDao: dao} = require('../../daos/dao')
 
 router.get('/', (req, res)=> {
     dao.findAll(res, dao.table)
@@ -12,7 +12,7 @@ router.get('/count', (req, res)=> {
 })
 
 router.get('/sort', (req, res)=> {
-    dao.sort(req, res, dao.table)
+    dao.sort(res, dao.table)
 })
 
 router.get('/:id', (req, res)=> {
@@ -21,6 +21,10 @@ router.get('/:id', (req, res)=> {
 
 router.post('/create', (req, res)=> {
     dao.create(req, res)
+})
+
+router.patch('/update/:id', (req, res)=> {
+    dao.update(req, res)
 })
 
 module.exports = router

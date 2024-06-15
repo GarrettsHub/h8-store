@@ -3,7 +3,7 @@ const router = express.Router()
 
 const port = process.env.port || 3005
 
-const tables = ['users']
+const tables = ['user', 'product', 'category', 'cart']
 
 tables.forEach(table => {
     router.use(`/api/${table}`, require(`./api/${table}Routes`))
@@ -11,7 +11,10 @@ tables.forEach(table => {
 
 router.get('/api', (req, res) => {
     res.json({
-        'ALL Users': `http://localhost:${port}/api/users`
+        'ALL Users': `http://localhost:${port}/api/user`,
+        'ALL Products': `http://localhost:${port}/api/product`,
+        'ALL Categories': `http://localhost:${port}/api/category`,
+        'Cart Items': `http://localhost:${port}/api/cart`
     })
 })
 

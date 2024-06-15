@@ -1,9 +1,9 @@
 const con = require('../../config/dbconfig')
-const { findAll } = require('../common/daoCommon')
+// const { findAll } = require('../common/daoCommon')
 
-const userDao = {
+const productDao = {
 
-    table: 'user',
+    table: 'product',
 
     findAll: (res, table) => {
         con.execute(
@@ -16,7 +16,7 @@ const userDao = {
                         res.json(rows)
                     }
                 } else {
-                    console.log('DAO ERROR userDao', error)
+                    console.log('DAO ERROR prodDao', error)
                 }
             }
         )
@@ -34,7 +34,7 @@ const userDao = {
                         res.json(rows)
                     }
                 } else {
-                    console.log('DAO ERROR userId', error)
+                    console.log('DAO ERROR prodId', error)
                 }
             }
         )
@@ -51,7 +51,7 @@ const userDao = {
                         res.json(rows)
                     }
                 } else {
-                    console.log('DAO ERROR userCount', error)
+                    console.log('DAO ERROR prodCount', error)
                 }
             }
         )
@@ -59,7 +59,7 @@ const userDao = {
 
     sort: (res, table) => {
         con.execute(
-            `SELECT * FROM ${table} ORDER BY lName, fName;`,
+            `SELECT * FROM ${table} ORDER BY name;`,
             (error, rows)=> {
                 if(!error) {
                     if (rows.length === 1) {
@@ -131,4 +131,4 @@ const userDao = {
     }
 }
 
-module.exports = userDao
+module.exports = productDao

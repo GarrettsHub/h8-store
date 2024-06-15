@@ -25,3 +25,6 @@ INSERT INTO cart (user_id, product_id, quantity) VALUES
 (1, 3, 1),
 (2, 2, 1),
 (2, 4, 2);
+
+
+SELECT 

@@ -1,13 +1,23 @@
 const con = require('../../config/dbconfig')
 const { findAll } = require('../common/daoCommon')
 
-const userDao = {
+const cartDao = {
 
-    table: 'user',
+    table: 'cart',
 
     findAll: (res, table) => {
         con.execute(
-            `SELECT * FROM ${table};`,
+            `SELECT
+            c.cart_id,
+            c.quantity,
+            u.username,
+            p.name
+        FROM
+            cart c
+        JOIN
+            user u USING (user_id)
+        JOIN
+            product p USING (product_id);`,
             (error, rows) => {
                 if(!error) {
                     if (rows.length === 1) {
@@ -24,8 +34,17 @@ const userDao = {
 
     findById: (res, table, id) => {
         con.execute(
-            `SELECT * FROM ${table} WHERE ${table}_id = ?;`,
-            [id],
+            `SELECT
+            c.cart_id,
+            c.quantity,
+            u.username,
+            p.name
+        FROM
+            cart c
+        JOIN
+            user u USING (user_id)
+        JOIN
+            product p USING (product_id) WHERE ${table}_id = ${id}`,
             (error,rows)=> {
                 if(!error) {
                     if (rows.length === 1) {
@@ -59,7 +78,7 @@ const userDao = {
 
     sort: (res, table) => {
         con.execute(
-            `SELECT * FROM ${table} ORDER BY lName, fName;`,
+            `SELECT * FROM ${table} ORDER BY cart_id;`,
             (error, rows)=> {
                 if(!error) {
                     if (rows.length === 1) {
@@ -131,4 +150,4 @@ const userDao = {
     }
 }
 
-module.exports = userDao
+module.exports = cartDao
