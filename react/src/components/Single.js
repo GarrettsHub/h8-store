@@ -1,47 +1,47 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import SpinnerLoader from './SpinnerLoader'
 
-import ItemCard from './ItemCard'
+const Single = () => {
+    // useState to hold the product data
+    const [item, setItem] = useState(null);
+    
+    const { path, id } = useParams();
+    
+    const url = `http://localhost:3005/api/${path}/${id}`
 
+    // useEffect to fetch product data when the component mounts
+    useEffect(() => {
+        const fetchItem = async () => {
+            try {
+                // request to the api to get product data
+                const response = await axios.get(url);
+                // Update the state with the fetched data
+                setItem(response.data);
+            } catch (error) {
+                console.error('Error fetching the product data:', error);
+            }
+        }
+        // Call the function to fetch the product data
+        fetchItem()
+    }, [url]); // Dependency array ensures the effect runs when the URL changes
 
-const Single =(props)=> {
+    // Show a loading message while the data is being fetched
+    if (!item) {
+        return <SpinnerLoader />
+    }
 
-    const [data, setData] = useState({})
-    const params = useParams()
-
-    const url = `http://localhost:3005/api/${params.path}/${params.id}`
-
-    useEffect(()=> {
-        axios.get(url).then(res => setData(res.data))
-    }, [])
-
-    console.log(data)
-
-    // const productComponents = data.map(item => {
-
-    //     let path
-    //     let pathId
-
-    //     return <ItemCard
-    //     key={item.product_id}
-    //     id={item.product_id}
-    //     title={item.name}
-    //     imgUrl={item.image_url}
-    //     price={item.price}
-    //     category={item.category}
-    //     stock={item.stock}
-    //     path={`/${path}`}
-    //     pathId={pathId}
-    //     />
-    // })
-
-    return(
-        <main className="main" id="singleMain">
-            <div className="container">
-                <div className="row row-cols-1 row-cols-md-4 g-4">
-                    <ItemCard 
-                    />
+    return (
+        <main className="container my-5" id="singleMain">
+            <div className="row">
+                <div className="col-md-6">
+                    <img src={`/images/${item.image_url}`} alt={item.name} className="img-fluid" />
+                </div>
+                <div className="col-md-6">
+                    <h1>{item.name}</h1>
+                    <h3 className="text-danger">${item.price}</h3>
+                    <p>{item.description}</p>
                 </div>
             </div>
         </main>

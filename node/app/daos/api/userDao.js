@@ -74,25 +74,26 @@ const userDao = {
         )
     },
 
-    create: (req, res, table) => {
+    create: (req, res)=> {
         if(Object.keys(req.body).length === 0) {
             res.json({
-                'error': true,
-                "message": "no fields to create"
+                "error": true,
+                "message": "No fields to create"
             })
         } else {
             const fields = Object.keys(req.body)
             const values = Object.values(req.body)
 
             con.execute(
-                `INSERT INTO ${table} SET ${fields.join(' = ?, ')} = ?;`,
+                `INSERT INTO user SET ${fields.join('= ?, ')} =?;`,
                 values,
                 (error, dbres)=> {
                     if (!error) {
-                        res.send(`Last id ${dbres.insertId}`)
+                        res.json({
+                            Last_id: dbres.insertId
+                        })
                     } else {
-                        console.log('DAO ERROR: ', error)
-                        res.send('Error adding player')
+                        console.log('DAO ERROR ', error)
                     }
                 }
             )

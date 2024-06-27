@@ -17,6 +17,7 @@ const Header =()=> {
                             <Link to='/about'>about</Link>
                             <Link to='/product'>see what's in store</Link>
                             <Link to='/login'>Login or Sign Up!</Link>
+                            <Link to='/productForm'>add your product</Link>
                         </nav>
                     </div>
                 </div>
