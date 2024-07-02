@@ -11,7 +11,7 @@ const About =()=> {
                         
                     </div>
                     <div className="col-md-6">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Earum quibusdam incidunt accusamus reprehenderit ipsa doloribus, ea natus veritatis. Non dicta magni repellat unde. Ab assumenda fuga voluptatibus at mollitia ipsum eligendi, adipisci ad, quibusdam asperiores obcaecati nobis consequatur cum enim distinctio quo sunt rerum nisi iste. Quasi est, eum excepturi distinctio tempora non sed corporis sint culpa eos dolores dolorem atque commodi, ut enim voluptatibus. Explicabo, omnis sunt delectus tenetur unde fugit earum saepe accusamus nobis consectetur illo eaque itaque!
+                        We are a small clothing brand that sells only the best of the best that you can never find anywhere else and if you can it is 100% stolen! Enjoy our brand and share
                     </div>
                 </div>
             </div>

@@ -14,6 +14,7 @@ import SpinnerLoader from "./components/SpinnerLoader"
 import Login from "./components/Login"
 import Form from "./components/Form"
 import ProductForm from "./components/ProductForm"
+import Category from "./components/Categories"
 
 
 
@@ -61,7 +62,7 @@ const App =()=> {
         }
     }
     
-
+// functions
     return(
         <>
             <Header />

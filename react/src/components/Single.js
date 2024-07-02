@@ -5,7 +5,7 @@ import SpinnerLoader from './SpinnerLoader'
 
 const Single = () => {
     // useState to hold the product data
-    const [item, setItem] = useState(null);
+    const [item, setItem] = useState();
     
     const { path, id } = useParams();
     
@@ -31,6 +31,8 @@ const Single = () => {
     if (!item) {
         return <SpinnerLoader />
     }
+
+    console.log(item)
 
     return (
         <main className="container my-5" id="singleMain">

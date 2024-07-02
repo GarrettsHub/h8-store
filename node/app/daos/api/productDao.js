@@ -40,6 +40,7 @@ const productDao = {
         )
     },
 
+    // not incorporated yet
     count: (res, table)=> {
         con.execute(
             `SELECT COUNT(*) count FROM ${table};`,
